@@ -1,0 +1,14 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+<h6 class="text-center mt-5 fw-bold"><img src="{% static 'images/download.png' %}" alt="" class="img-fluid " height="30" width="30"> You have been logged out</h6>
+    <div class="border-top pt-3 text-center">
+        <small class="text-muted text-center"> 
+            Log in again? <a class="ml-2" href="{% url 'login' %}">Login</a>
+
+        </small>
+    </div>
+</div>
+{% endblock %}
