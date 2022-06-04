@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row d.flex justify-content-center">
             <div class="col-md-5 m-md-5 phonediv">
-                <img class="img-fluid" src="{% static 'assets/phone.png' %}" alt="">
+                <img class="img-fluid" src="{% static 'images/phone.png' %}" alt="">
             </div>
 
 
@@ -15,7 +15,7 @@
                 <div class="col  mt-3 " >
                     <div class="col form-area card">
                         <div class="container">
-                            <img class="img-fluid mainlogo m-5" src="{% static 'assets/mainlogo.png' %}" alt="">
+                            <img class="img-fluid mainlogo m-5" src="{% static 'images/mainlogo.png' %}" alt="">
                         </div>
                         <form class="container" action="" method="POST">
                             {% csrf_token %}
@@ -37,12 +37,12 @@
                           
                     </div>
                     <div class="mt-4 bg-white text-center card">
-                        <p>Dont have an account? <a href="" class="sign fw-bold">Sign up</a></p>
+                        <p>Dont have an account? <a href="{% url 'register' %}" class="sign fw-bold">Sign up</a></p>
                       </div>
                       <div class="row m-3">
                           <p class="text-center">Get the app.</p>
-                          <div class="col"><img class="img-fluid" src="{% static 'assets/appstore.png' %}" alt=""></div>
-                          <div class="col"><img class="img-fluid" src="{% static 'assets/playstore.png' %}" alt=""></div>
+                          <div class="col"><img class="img-fluid" src="{% static 'images/appstore.png' %}" alt=""></div>
+                          <div class="col"><img class="img-fluid" src="{% static 'images/playstore.png' %}" alt=""></div>
                       </div>
                 </div>
 
