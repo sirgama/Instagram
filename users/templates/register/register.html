@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-        
+          
 <div class="container-fluid">
     <div class="container">
         <div class="row d.flex justify-content-center">
@@ -12,32 +12,42 @@
 
 
             <div class="col-md-4 d.flex justify-content-center m-3 ">
-                <div class="col  mt-3 " >
+                <div class="col  m-2  " >
                     <div class="col form-area card">
                         <div class="container">
                             <img class="img-fluid mainlogo m-5" src="{% static, 'assets/mainlogo.png' %}" alt="">
+                        <p class="text-center text-muted fw-bold"> Sign up to see photos and <br> videos from your friends.</p>
+                        <button  class="btn btn-primary btn-block mb-4 "><i class="fa-brands fa-facebook-square"></i> Log in with Facebook</button>
                         </div>
-                        <form class="container" action="" method="POST">
+                        <form class="container ">
+                            
+                            
                             {% csrf_token %}
 
                             <!-- Email input -->
                            {{form}}
                           
-                            <!-- Submit button -->
-                            <button type="submit" class="btn btn-primary btn-block mb-4">Log in</button>
-                          
-                            <!-- Register buttons -->
-                            <div class="text-center">
-                              <p><ul> </ul></p><small class="text-muted fw-bold">OR</small><p></p>
-                              <p class="facebooktxt fw-bold"><i class="fa-brands fa-facebook-square"></i> Log in with Facebook</p>
-                              <small class="mt-4 facebooktxt mb-5"></i>Forgot password?</small>
+                            <!-- 2 column grid layout for inline styling -->
+                            <div class="row mb-2">
+                              <div class="col d-flex justify-content-center">
+                                <small class="text-center text-muted consent"> People who use our service may have uploaded your contact information to Instagram. Learn More.</small>
+                                
                             </div>
+                            <small class="text-center text-muted consent mt-3">By signing up, you agree to our Terms , Data Policy and Cookies Policy .</small>
+                              
+                            </div>
+                          
+                            <!-- Submit button -->
+                            <button type="submit" class="btn btn-primary btn-block mb-4">Sign up in</button>
+                          
+                          
+                           
                           </form>
 
                           
                     </div>
                     <div class="mt-4 bg-white text-center card">
-                        <p>Dont have an account? <a href="" class="sign fw-bold">Sign up</a></p>
+                        <p>Have an account? <a href="" class="sign fw-bold">Sign in</a></p>
                       </div>
                       <div class="row m-3">
                           <p class="text-center">Get the app.</p>
@@ -50,5 +60,6 @@
         </div>
     </div>
 </div>
+
 
 {% endblock %}
