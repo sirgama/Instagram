@@ -1,5 +1,6 @@
 {% extends 'users/base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block content %}
         
@@ -21,7 +22,7 @@
                             {% csrf_token %}
 
                             <!-- Email input -->
-                           {{form}}
+                           {{form | crispy}}
                           
                             <!-- Submit button -->
                             <button type="submit" class="btn btn-primary btn-block mb-4">Log in</button>

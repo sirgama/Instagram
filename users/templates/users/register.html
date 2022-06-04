@@ -1,5 +1,6 @@
 {% extends 'users/base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block content %}
           
@@ -19,13 +20,13 @@
                         <p class="text-center text-muted fw-bold"> Sign up to see photos and <br> videos from your friends.</p>
                         <button  class="btn btn-primary btn-block mb-4 "><i class="fa-brands fa-facebook-square"></i> Log in with Facebook</button>
                         </div>
-                        <form class="container ">
+                        <form class="container " action="" method="POST">
                             
                             
                             {% csrf_token %}
 
                             <!-- Email input -->
-                           {{form}}
+                           {{form | crispy}}
                           
                             <!-- 2 column grid layout for inline styling -->
                             <div class="row mb-2">
