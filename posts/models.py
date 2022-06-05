@@ -31,4 +31,21 @@ class Tag(models.Model):
             self.slug - slugify(self.slug)
         return super().save(*args, **kwargs)
     
+
+class Post(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    picture = models.ImageField(upload_to=user_directory_path, verbose_name='Picture', null=True)
+    caption = models.CharField(max_length=1000000, verbose_name="Caption")
+    posted = models.DateTimeField(auto_now_add=True)
+    tag = models.ManyToManyField(Tag, related_name='tags')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    likes = models.IntegerField(default=0)
+    
+    def get_abolute_url(self):
+        return reverse('post-details', args=[str(self.id)])
+    
+    def __str__(self):
+        return self.caption
+    
+    
     
