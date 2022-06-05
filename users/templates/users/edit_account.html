@@ -1,0 +1,88 @@
+{% extends 'users/base.html' %}
+{% load static %}
+<div class="container-fluid">
+{% block content %}
+{% include 'users/navbar.html' %}
+<div class="container  mt-5">
+    
+    <div class="row">
+        <div class="col-3">
+          <!-- Tab navs -->
+          <div
+            class="nav flex-column nav-pills text-center"
+            id="v-pills-tab"
+            role="tablist"
+            aria-orientation="vertical"
+          >
+            <a
+              class="nav-link active bg-light text-dark fw-bold"
+              style="border-left:4px solid rgb(255, 0, 217) ;"
+              id="v-pills-home-tab"
+              data-mdb-toggle="pill"
+              href="#v-pills-home"
+              role="tab"
+              aria-controls="v-pills-home"
+              aria-selected="true"
+              >Edit Profile</a
+            >
+            <a
+              class="nav-link bg-light text-dark fw-bold"
+              style="border-left:4px solid rgb(0, 8, 255) ;"
+              id="v-pills-profile-tab"
+              data-mdb-toggle="pill"
+              href="#v-pills-profile"
+              role="tab"
+              aria-controls="v-pills-profile"
+              aria-selected="false"
+              >Change Password</a
+            >
+            <a
+              class="nav-link bg-light text-dark fw-bold"
+              style="border-left:4px solid rgb(64, 255, 0) ;"
+              id="v-pills-messages-tab"
+              data-mdb-toggle="pill"
+              href="#v-pills-messages"
+              role="tab"
+              aria-controls="v-pills-messages"
+              aria-selected="false"
+              >Email Notifications</a
+            >
+          </div>
+          <!-- Tab navs -->
+        </div>
+      
+        <div class="col-9">
+          <!-- Tab content -->
+          <div class="tab-content" id="v-pills-tabContent">
+            <div
+              class="tab-pane fade show active"
+              id="v-pills-home"
+              role="tabpanel"
+              aria-labelledby="v-pills-home-tab"
+            >
+              Home content
+            </div>
+            <div
+              class="tab-pane fade"
+              id="v-pills-profile"
+              role="tabpanel"
+              aria-labelledby="v-pills-profile-tab"
+            >
+              Profile content
+            </div>
+            <div
+              class="tab-pane fade"
+              id="v-pills-messages"
+              role="tabpanel"
+              aria-labelledby="v-pills-messages-tab"
+            >
+              Messages content
+            </div>
+          </div>
+          <!-- Tab content -->
+        </div>
+      </div>
+
+</div>
+{% endblock %}
+</div>
