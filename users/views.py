@@ -37,4 +37,4 @@ def edit_account(request):
         'p_form' : p_form
     }
     
-    return render(request, 'users/edit_account.html')
+    return render(request, 'users/edit_account.html', context)
