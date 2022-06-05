@@ -52,4 +52,18 @@ class Follow(models.Model):
     following = models.ForeignKey(User, on_delete=models.CASCADE, related_name='following')
     
     
+class Stream(models.Model):
+    following = models.ForeignKey(User, on_delete=models.CASCADE, related_name='stream_following')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='stream_user')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
+    date = models.DateTimeField()
     
+    def add_post(sender, instance, *args, **kwargs):
+        post = instance
+        user = post.user
+        followers = Follow.objects.all().filter(following=user)
+        for follower in followers:
+            stream = Stream(post=post, user=follower, date=post.posted, following=user)
+            stream.save()
+            
+post_save.connect(Stream.add_post, sender=Post)
