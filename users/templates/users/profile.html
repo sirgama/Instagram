@@ -8,14 +8,14 @@
     <div class="container col-md-8 ">
     <div class="row">
         <div class="col-md-3">
-            <img class="rounded-circle img-fluid royalty" src="{% static 'images/mediaUpsell.jpg' %}" alt=""
+            <img class="rounded-circle img-fluid royalty" src="{{user.profile.image.url}}" alt=""
                             style="max-height: 130px;max-width:130px;">
         </div>
 
         <!-- User details section -->
         <div class="col-md-6">
             <div class="row">
-                <div class="col"><h4>sir_gamaliel</h4> </div>
+                <div class="col"><h4>{{user.username}}</h4> </div>
                 <div class="col"> <button type="button" class="btn btn-outline-light text-dark fw-bold text-dark" data-mdb-ripple-color="dark">Edit Profile</button>
                 </div>
                 <div class="col"><i class="fa-solid fa-gear" ></i></div>
@@ -28,10 +28,10 @@
             </div>
 
             <!-- bio details -->
-            <div class="row mt-2"><h6 class="fw-bold text-dark">Gamaliel Sirengo</h6></div>
-            <div class="row"><p class="text-dark">Saved by Grace</p></div>
-            <div class="row"></div>
-            <div class="row"></div>
+            <div class="row mt-2"><h6 class="fw-bold text-dark">{{user.profile.first_name}} {{user.profile.last_name}}</h6></div>
+            <div class="row"><p class="text-dark">{{user.profile.bio}}</p></div>
+            <div class="row"><p class="text-dark">{{user.profile.location}}</p></div>
+            <div class="row"><a class="" href="{{user.profile.url}}">{{user.profile.url}}</a></div>
         </div>
         <!-- User details section -->
 
