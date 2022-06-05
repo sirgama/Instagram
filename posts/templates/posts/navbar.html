@@ -1,4 +1,29 @@
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome -->
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+rel="stylesheet"
+/>
+<!-- Google Fonts -->
+<link
+href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+rel="stylesheet"
+/>
+<!-- MDB -->
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.1.0/mdb.min.css"
+rel="stylesheet"
+/>
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <title>Login</title>
+</head>
+<body>
     <!-- Navbar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container justify-content-between">
@@ -57,20 +82,7 @@
           
                     <span class="badge rounded-pill badge-notification bg-danger">6</span>
                   </a>
-                  <ul
-                    class="dropdown-menu dropdown-menu-end"
-                    aria-labelledby="navbarDropdownMenuLink"
-                  >
-                    <li>
-                      <a class="dropdown-item" href="#">Some news</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">Another news</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </li>
-                  </ul>
+                  
                 </li>
                 <li class="nav-item dropdown me-3 me-lg-3">
                   <a
@@ -82,22 +94,9 @@
                     aria-expanded="false"
                   >
                   <i class="fa-regular fa-square-plus fafa"></i>
-                    <span class="badge rounded-pill badge-notification bg-danger">12</span>
+                    
                   </a>
-                  <ul
-                    class="dropdown-menu dropdown-menu-end"
-                    aria-labelledby="navbarDropdownMenuLink"
-                  >
-                    <li>
-                      <a class="dropdown-item" href="#">Some news</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">Another news</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </li>
-                  </ul>
+                 
                 </li>
                 <li class="nav-item dropdown me-3 me-lg-3">
                   <a
@@ -110,20 +109,7 @@
                   >
                   <i class="fa-regular fa-compass fafa"></i>
                   </a>
-                  <ul
-                    class="dropdown-menu dropdown-menu-end"
-                    aria-labelledby="navbarDropdownMenuLink"
-                  >
-                    <li>
-                      <a class="dropdown-item" href="#">Some news</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">Another news</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </li>
-                  </ul>
+                  
                 </li>
     
                 <li class="nav-item dropdown me-3 me-lg-3">
@@ -137,22 +123,9 @@
                     >
                     <i class="fa-regular fa-heart fafa"></i>
                     </a>
-                    <ul
-                      class="dropdown-menu dropdown-menu-end"
-                      aria-labelledby="navbarDropdownMenuLink"
-                    >
-                      <li>
-                        <a class="dropdown-item" href="#">Some news</a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">Another news</a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                      </li>
-                    </ul>
+                   
                   </li>
-                <li class="nav-item me-3 me-lg-1">
+                <li class="nav-item dropdown me-3 me-lg-1">
                     <a class="nav-link dropdown-toggle hidden-arrow"
                     href="#"
                     id="navbarDropdownMenuLink"
@@ -173,13 +146,16 @@
                       aria-labelledby="navbarDropdownMenuLink"
                     >
                       <li>
-                        <a class="dropdown-item" href="#">Some news</a>
+                        <a class="dropdown-item" href="{% url 'profile' %}"><i class="fa-regular fa-user"></i> Profile</a>
                       </li>
                       <li>
-                        <a class="dropdown-item" href="#">Another news</a>
+                        <a class="dropdown-item" href="{% url 'profile' %}"><i class="fa-regular fa-bookmark"></i> Saved</a>
                       </li>
                       <li>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="{% url 'profile' %}"><i class="fa-solid fa-sliders"></i> Settings</a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="{% url 'logout' %}"><i class="fa-solid fa-repeat"></i> Switch Accounts</a>
                       </li>
                     </ul>
                   </li>
@@ -192,4 +168,9 @@
       </nav>
       <!-- Navbar -->
     
-    
+      <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.1.0/mdb.min.js"
+      ></script>
+      </body>
+      </html>

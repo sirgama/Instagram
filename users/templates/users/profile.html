@@ -2,8 +2,51 @@
 {% load static %}
 
 {% block content %}
-{% include 'navbar.html' %}
+{% include 'users/navbar.html' %}
+<div class="container-flud row mt-5">
+    <div class="col-md-2"></div>
+    <div class="container col-md-8 ">
+    <div class="row">
+        <div class="col-md-3">
+            <img class="rounded-circle img-fluid royalty" src="{% static 'images/mediaUpsell.jpg' %}" alt=""
+                            style="max-height: 130px;max-width:130px;">
+        </div>
 
+        <!-- User details section -->
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col"><h4>sir_gamaliel</h4> </div>
+                <div class="col"> <button type="button" class="btn btn-outline-light text-dark fw-bold text-dark" data-mdb-ripple-color="dark">Edit Profile</button>
+                </div>
+                <div class="col"><i class="fa-solid fa-gear" ></i></div>
+            </div>
+            <!-- Posts Followers and following -->
+            <div class="row mt-md-2">
+                <div class="col"><p><span class="fw-bold text-dark">0</span> posts</p> </div>
+                <div class="col"><p><span class="fw-bold text-dark">0</span> followers</p> </div>
+                <div class="col"><p><span class="fw-bold text-dark">0</span> following</p> </div>
+            </div>
+
+            <!-- bio details -->
+            <div class="row mt-2"><h6 class="fw-bold text-dark">Gamaliel Sirengo</h6></div>
+            <div class="row"><p class="text-dark">Saved by Grace</p></div>
+            <div class="row"></div>
+            <div class="row"></div>
+        </div>
+        <!-- User details section -->
+
+
+    </div>
+   <hr> </div>
+   <div class="col-md-2"></div>
+</div>
+
+
+<div class="container">
+    <div class="container">
+
+    </div>
+</div>
 
 
 {% endblock %}

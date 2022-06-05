@@ -27,19 +27,20 @@
 </head>
 <body>
 
-    <div class="container">
+    <div class="container-fluid">
       {% if messages %}
         {% for message in messages %}
           <div class="alert alert-{{message.tags}}">
             {{ message }}
           </div>
         {% endfor %}
-      {% endif %}
+      {% endif %} 
+    </div>
     {% block content %}
 
     {% endblock %}
 
-    </div>
+   
 
 
 
