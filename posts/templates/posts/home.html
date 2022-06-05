@@ -1,1 +1,8 @@
-<h2>Hello</h2>
+{% extends 'posts/base.html' %}
+{% load static %}
+{% include 'posts/navbar.html' %}
+
+{% block content %}
+{% include 'posts/navbar.html' %}
+
+{% endblock %}
