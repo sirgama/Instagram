@@ -51,12 +51,14 @@ rel="stylesheet"
             
     
               <ul class="navbar-nav flex-row m-auto me-5 ">
-                <form class="input-group w-auto my-auto d-none d-sm-flex">
+                <form class="input-group w-auto my-auto d-none d-sm-flex" role="search" action="{% url 'search' %}">
+                 
                     <input
                       autocomplete="on"
-                      type="search"
+                      type="text"
                       class="form-control rounded"
                       placeholder="Search"
+                      name="post"
                       style="min-width: 125px;background-color:#efefef; border-radius:10px; border:none;max-width: 605px;"
                     />
                     <span class="input-group-text border-0 d-none d-lg-flex"

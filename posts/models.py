@@ -46,7 +46,7 @@ class Post(models.Model):
         return reverse("post-details", args=[str(self.id)])
     @classmethod
     def search_by_caption(cls,search_term):
-        captions = cls.objects.filter(title__icontains=search_term)
+        captions = cls.objects.filter(caption__icontains=search_term)
         return captions
     
    

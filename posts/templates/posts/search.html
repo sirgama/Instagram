@@ -1,0 +1,129 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+{% include 'posts/navbar.html' %}
+
+<div class="container-fluid">
+{% block content %}
+{% include 'posts/navbar.html' %}
+<style>
+
+
+
+
+    .fafa{
+        font-size: 21px;
+        color: rgba(20, 19, 19, 0.887);
+    }
+    
+    .scrolling-wrapper{
+        display: flex;
+        flex-direction: row;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        height: 12vh;
+       
+        width: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .royaltyy{
+        border: 3px solid pink;
+    }
+    
+
+
+</style>
+
+<div class="">
+<div class="container-fluid mt-5">
+    <div class="container-fluid row d.flex justify-content-center ">
+        <div class="col-md-5 ">
+            <div class="row mt-4">
+                <br>
+            </div>
+            <div class="scrolling-wrapper card">
+                
+                <div class="col m-2">
+                    {% if captions %}
+                   <p class="text-center text-muted ">{{captions|length}} search results for {{message}} </p>
+                   {% else %}
+                   <p class="text-center text-muted ">Didn't find anything for {{message}} </p>
+                   {% endif %}
+                </div>
+
+            </div>
+
+
+
+            <div class="row row-cols-1 row-cols-md-1 g-4">
+               {% if captions %}
+                {% for caption in captions %}
+                <div class="col">
+                    <div class="card mt-4 ">
+                        <div class="card-header">
+                            <div class="row d.flex justify-content-between">
+                                <div class="col-md-10 col-sm-1">
+                                    
+                                   <img class="rounded-circle img-fluid royalty" src="{{caption.user.profile.image.url}}"
+                                        alt="" style="max-height: 40px;max-width:40px;"> <span class="fw-bold">{{caption.user.username}}</span>
+
+                                </div>
+                                <div class="col-md-2 col-sm-1"><i class="fa-solid fa-ellipsis"></i></div>
+                            </div>
+                        </div>
+                       <img src="{{caption.picture.url}}" class="card-img-top"
+                            alt="Hollywood Sign on The Hill" height="400" width="400" style="object-fit: cover;" />
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <div class="row d.flex justify-content-between">
+                                    <div class="col-md-10 col-sm-1">
+                                        <a href="{% url 'like' caption.id %}"><i class="fa-regular fa-heart m-2"></i></a> <i
+                                            class="fa-regular fa-comment m-2"></i><i
+                                            class="fa-solid fa-location-arrow m-2"></i>
+                                    </div>
+                                    <div class="col-md-2 col-sm-1"><i class="fa-regular fa-bookmark"></i></div>
+                                </div>
+                            </h5>
+                            <p class="card-text fw-bold">
+                                <small>{{caption.likes}} likes</small>
+                            </p>
+                          <small> <p class="card-text"><span class="fw-bold">{{caption.user.username}} </span> {{caption.caption}}</p></small> 
+                            <small class="text-muted">{% for tag in caption.tags.all %} <p>#{{tag}}</p>{% endfor %}</small>
+                           <small><small class="text-muted">{{caption.captioned}}<br></small></small>
+                           <small><small class="text-muted">comments <br></small></small>
+                           {% for comment in comments %}
+                            <small class="fwbold">{{comment.comment}}</small>
+                           {% endfor %}
+                           <small><form action="{% url 'comment' caption.id%}" method="caption">
+                            {%csrf_token%}
+                            <div class="form-group mb-3">
+                              <input type="text" class="form-control" name="comment" placeholder="Comment" />
+                              <button class="btn btn-success" type="submit">Comment</button>
+                            </div>
+                          </form></small> 
+                        </div>
+                        <div class="card-footer">
+                            
+
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+
+            </div>
+
+
+        </div>
+
+
+
+
+        
+    </div>
+</div>
+</div>
+
+
+{% endblock %}
+</div>

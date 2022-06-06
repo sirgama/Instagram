@@ -51,18 +51,20 @@ rel="stylesheet"
             
     
               <ul class="navbar-nav flex-row m-auto me-5">
-                <form class="input-group w-auto my-auto d-none d-sm-flex">
-                    <input
-                      autocomplete="on"
-                      type="search"
-                      class="form-control rounded"
-                      placeholder="Search"
-                      style="min-width: 125px;background-color:#efefef; border-radius:10px; border:none;max-width: 605px;"
-                    />
-                    <span class="input-group-text border-0 d-none d-lg-flex"
-                      ></i
-                    ></span>
-                  </form>
+                <form class="input-group w-auto my-auto d-none d-sm-flex" role="search" action="{% url 'search' %}">
+                 
+                  <input
+                    autocomplete="on"
+                    type="text"
+                    class="form-control rounded"
+                    placeholder="Search"
+                    name="post"
+                    style="min-width: 125px;background-color:#efefef; border-radius:10px; border:none;max-width: 605px;"
+                  />
+                  <span class="input-group-text border-0 d-none d-lg-flex"
+                    ></i
+                  ></span>
+                </form>
                 
                 <li class="nav-item me-3 me-lg-3">
                   <a class="nav-link" href="{% url 'homepage' %}">
