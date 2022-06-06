@@ -15,10 +15,12 @@ def home(request):
     user = request.user
     post_items = Post.objects.all()
     all_users = User.objects.all()
+    comments = Comments.objects.all()
     context = {
         'post_items': post_items[::-1],
         'all_users':all_users,
-        'user':user
+        'user':user,
+        'comments':comments
        
     }
     return render(request, 'posts/home.html', context)

@@ -5,7 +5,34 @@
 <div class="container-fluid">
 {% block content %}
 {% include 'posts/navbar.html' %}
+<style>
 
+
+
+
+    .fafa{
+        font-size: 21px;
+        color: rgba(20, 19, 19, 0.887);
+    }
+    
+    .scrolling-wrapper{
+        display: flex;
+        flex-direction: row;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        height: 12vh;
+       
+        width: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .royaltyy{
+        border: 3px solid pink;
+    }
+    
+
+
+</style>
 
 <div class="">
 <div class="container-fluid mt-5">
@@ -17,9 +44,9 @@
             <div class="scrolling-wrapper card">
                 {% for user in all_users %}
                 <div class="col m-2">
-                    <img class="rounded-circle img-fluid royalty" src="{{user.profile.image.url}}" alt=""
-                        style="max-height: 60px;max-width:60px;">
-                    <p>{{user.username}}</p>
+                    <img class="rounded-circle img-fluid royaltyy" src="{{user.profile.image.url}}" alt=""
+                        style="max-height: 50px;max-width:50px;">
+                    <small><p>{{user.username}}</p></small>
                 </div>
 
                 {% endfor %}
@@ -35,7 +62,8 @@
                         <div class="card-header">
                             <div class="row d.flex justify-content-between">
                                 <div class="col-md-10 col-sm-1">
-                                    <img class="rounded-circle img-fluid royalty" src="{{post.user.profile.image.url}}"
+                                    
+                                   <img class="rounded-circle img-fluid royalty" src="{{post.user.profile.image.url}}"
                                         alt="" style="max-height: 40px;max-width:40px;"> <span class="fw-bold">{{post.user.username}}</span>
 
                                 </div>
@@ -60,8 +88,8 @@
                             </p>
                           <small> <p class="card-text"><span class="fw-bold">{{post.user.username}} </span> {{post.caption}}</p></small> 
                             <small class="text-muted">{% for tag in post.tags.all %} <p>#{{tag}}</p>{% endfor %}</small>
-                           <small><small class="text-muted">{{post.posted}}</small></small>
-                           <small><small class="text-muted">comments</small></small><hr>
+                           <small><small class="text-muted">{{post.posted}}<br></small></small>
+                           <small><small class="text-muted">comments <br></small></small>
                            {% for comment in comments %}
                             <small class="fwbold">{{comment.comment}}</small>
                            {% endfor %}
