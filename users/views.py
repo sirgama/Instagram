@@ -25,9 +25,11 @@ def register(request):
 def profile(request):
     user = request.user
     posts = Post.objects.filter(user=user).all()
-    
+    posts.reverse()
+    counted = posts.count()
     context = {
-        'posts': posts
+        'posts': posts,
+        'counted':counted
     }
     
     return render(request, 'users/profile.html', context)
