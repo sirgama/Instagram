@@ -3,21 +3,41 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-
-<form class="container " action="" method="POST" enctype="multipart/form-data">
+<div class="container mt-5">
+    <div class="container mt-5">
                             
-                            
-    {% csrf_token %}
 
-    <!-- Email input -->
-   {{form | crispy}}
-  
-  
-  
-    <!-- Submit button -->
-    <button type="submit" class="btn btn-primary  mb-4 btn-block">Create post</button>
-  
-  
-   
-  </form>
+
+                    <div class="row">
+                        <div class="col  m-2  " >
+                            <div class="col form-area card">
+                                <div class="container">
+                                    <img class="img-fluid mainlogo m-4 " src="{% static 'images/download.jpg' %}" alt="">
+                                <p class="text-center text-muted fw-bold"> Create anew post from your memories<br> share with your friends.</p>
+                                </div>
+                                <form class="container " action="" method="POST">
+                                    
+                                    
+                                    {% csrf_token %}
+        
+                                    <!-- Email input -->
+                                   {{form|crispy}}
+                                  
+                                    <!-- 2 column grid layout for inline styling -->
+                                    
+                                  
+                                    <!-- Submit button -->
+                                    <button type="submit" class="btn btn-primary  mb-4 btn-block">Create Post</button>
+                                  
+                                  
+                                   
+                                  </form>
+        
+                                  
+                            </div>
+                            
+                        </div>
+                    </div>
+</div>
+</div>
 {% endblock %}
