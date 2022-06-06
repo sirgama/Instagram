@@ -1,0 +1,23 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<form class="container " action="" method="POST" enctype="multipart/form-data">
+                            
+                            
+    {% csrf_token %}
+
+    <!-- Email input -->
+   {{form | crispy}}
+  
+  
+  
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary  mb-4 btn-block">Create post</button>
+  
+  
+   
+  </form>
+{% endblock %}
