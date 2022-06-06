@@ -7,12 +7,11 @@ from .models import Tag, Post, Follow, Stream
 @login_required
 def home(request):
     user = request.user
-    # posts = Stream.objects.filter(user=user)
-    # group_ids = []
-    # for post in posts:
-    #     group_ids.append(post.post.id)
-    post_items = Post.objects.all()
-    post_items.reverse()
+    posts = Stream.objects.filter(user=user)
+    group_ids = []
+    for post in posts:
+        group_ids.append(post.post.id)
+    post_items = Post.objects.filter(id__in=group_ids).all().order_by('-posted')
     context = {
         'post_items': post_items
     }
