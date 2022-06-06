@@ -2,7 +2,7 @@ from multiprocessing import context
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-from .models import Tag, Post, Follow, Stream, Likes, Comments
+from .models import Tag, Post, FollowersCount,  Likes, Comments
 from django.contrib.auth.models import User
 from .forms import NewPostForm
 from django.urls import reverse

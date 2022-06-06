@@ -5,7 +5,7 @@ from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from posts.models import Post
 from django.contrib.auth.models import User
 from .models import Profile
-from posts.models import Follow
+from posts.models import FollowersCount
 
 # Create your views here.
 

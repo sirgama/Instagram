@@ -46,28 +46,27 @@ class Post(models.Model):
         return reverse("post-details", args=[str(self.id)])
     
    
-class Follow(models.Model):
-    follower = models.ForeignKey(User, on_delete=models.CASCADE, related_name='follower')
-    following = models.ForeignKey(User, on_delete=models.CASCADE, related_name='following')
-    
-    def __str__(self):
-        return self.following
-    
-    
-class Stream(models.Model):
-    following = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='stream_following')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='stream_user')
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
-    date = models.DateTimeField()
-    
-    def add_post(sender, instance, *args, **kwargs):
-        post = instance
-        user = post.user
-        followers = Follow.objects.all().filter(following=user)
+class FollowersCount(models.Model):
+    follower = models.CharField(max_length=100)
+    user = models.CharField(max_length=100)
 
-        for follower in followers:
-            stream = Stream(post=post, user=follower.follower, date=post.posted, following=user)
-            stream.save()
+    def __str__(self):
+        return self.user
+    
+    
+# class Stream(models.Model):
+#     stream_user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='stream_user')
+#     post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
+#     date = models.DateTimeField()
+    
+#     def add_post(sender, instance, *args, **kwargs):
+#         post = instance
+#         current_user = post.user
+#         followers = FollowersCount.objects.all().filter(user=current_user)
+
+#         for follower in followers:
+#             stream = Stream(post=post, current_user=follower.follower, date=post.posted, user=current_user)
+#             stream.save()
             
 class Likes(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_likes')
@@ -96,4 +95,4 @@ class Comments(models.Model):
     class Meta:
         ordering = ["-pk"]
             
-post_save.connect(Stream.add_post, sender=Post)
+# post_save.connect(Stream.add_post, sender=Post)
