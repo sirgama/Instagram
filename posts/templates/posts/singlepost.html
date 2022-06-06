@@ -1,0 +1,62 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+{% include 'posts/navbar.html' %}
+
+<div class="container-fluid">
+{% block content %}
+{% include 'posts/navbar.html' %}
+
+
+<div class="col">
+    <div class="card mt-4 ">
+        <div class="card-header">
+            <div class="row d.flex justify-content-between">
+                <div class="col-md-10 col-sm-1">
+                    <img class="rounded-circle img-fluid royalty" src="{{post.user.profile.image.url}}"
+                        alt="" style="max-height: 40px;max-width:40px;"> <span class="fw-bold">{{post.user.user.username}}</span>
+
+                </div>
+                <div class="col-md-2 col-sm-1"><i class="fa-solid fa-ellipsis"></i></div>
+            </div>
+        </div>
+       <img src="{{post.picture.url}}" class="card-img-top"
+            alt="Hollywood Sign on The Hill" height="400" width="400" style="object-fit: cover;" />
+        <div class="card-body">
+            <h5 class="card-title">
+                <div class="row d.flex justify-content-between">
+                    <div class="col-md-10 col-sm-1">
+                        <a href="{% url 'like' post.id %}"><i class="fa-regular fa-heart m-2"></i></a> <i
+                            class="fa-regular fa-comment m-2"></i><i
+                            class="fa-solid fa-location-arrow m-2"></i>
+                    </div>
+                    <div class="col-md-2 col-sm-1"><i class="fa-regular fa-bookmark"></i></div>
+                </div>
+            </h5>
+            <p class="card-text fw-bold">
+                <small>{{post.likes}} likes</small>
+            </p>
+          <small> <p class="card-text"><span class="fw-bold">{{post.user.user.username}} </span> {{post.caption}}</p></small> 
+            <small class="text-muted">{% for tag in post.tags.all %} <p>#{{tag}}</p>{% endfor %}</small>
+           <small><small class="text-muted">{{post.posted}}</small></small>
+           <small><small class="text-muted">comments</small></small><hr>
+           {% for comment in comments %}
+            <small class="fwbold">{{comment.comment}}</small>
+           {% endfor %}
+           <small><form action="{% url 'comment' post.id%}" method="POST">
+            {%csrf_token%}
+            <div class="form-group mb-3">
+              <input type="text" class="form-control" name="comment" placeholder="Comment" />
+              <button class="btn btn-success" type="submit">Comment</button>
+            </div>
+          </form></small> 
+        </div>
+        <div class="card-footer">
+            
+
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
