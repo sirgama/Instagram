@@ -15,7 +15,7 @@
                                     <img class="img-fluid mainlogo m-4 " src="{% static 'images/download.jpg' %}" alt="">
                                 <p class="text-center text-muted fw-bold"> Create anew post from your memories<br> share with your friends.</p>
                                 </div>
-                                <form class="container " action="" method="POST">
+                                <form class="container " action="" method="POST" enctype="multipart/form-data">
                                     
                                     
                                     {% csrf_token %}

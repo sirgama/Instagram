@@ -93,13 +93,15 @@
         <div class="col-md-4 m-4 suggested ">
             <div class="row m-5">
                 <div class="col"> 
-                    <h6 class="text-center">Suggestions for you</h6>
+                    <div class=" px-3"><img class="rounded-circle img-fluid royalty" src="{{user.profile.image.url}}" alt=""
+                        style="max-height: 45px;max-width:45px;"> <small class="m-3">{{user.username}}</small><br><small class="text-muted m-3">{{user.profile.first_name}} {{user.profile.last_name}}</small> </div>
+                    <h6 class="mt-2 mb-1 m-2 text-muted">Suggestions for you</h6>
 
                     <div class="" style="width: 30rem;">
                         <ul class=" ">
                             {% for user in all_users %}
-                          <li class="list-group-item px-3"><img class="rounded-circle img-fluid royalty" src="{{user.profile.image.url}}" alt=""
-                            style="max-height: 30px;max-width:30px;"> <small>{{user.username}}</small><br><small class="text-muted">New to instagram</small> </li>
+                          <div class=" m-2"><img class="rounded-circle img-fluid royalty" src="{{user.profile.image.url}}" alt=""
+                            style="max-height: 30px;max-width:30px;"> <small>{{user.username}}</small><br><small class="text-muted">New to instagram</small> </div>
                       
 
                           {% endfor %}
