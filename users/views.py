@@ -37,33 +37,52 @@ def profile(request):
     
     return render(request, 'users/profile.html', context)
 
-# def profileUsers(request, pk):
-#     user_object = User.objects.get(username=pk)
-#     user_profile = Profile.objects.get(user=user_object)
-#     user_posts = Post.objects.filter(user=pk).all()
-#     user_post_length = len(user_posts)
-#     follower = request.user.username
-#     user = pk
+@login_required
+def profileUsers(request, pk):
+    user_object = User.objects.get(username=pk)
+    user_profile = Profile.objects.get(user=user_object)
+    user_posts = Post.objects.filter(user=pk).all()
+    user_post_length = len(user_posts)
+    follower = request.user.username
+    user = pk
 
-#     if Follow.objects.filter(follower=follower, following=user).first():
-#         button_text = 'Unfollow'
-#     else:
-#         button_text = 'Follow'
+    if FollowersCount.objects.filter(follower=follower, following=user).first():
+        button_text = 'Unfollow'
+    else:
+        button_text = 'Follow'
 
-#     user_followers = len(Follow.objects.filter(user=pk))
-#     user_following = len(Follow.objects.filter(follower=pk))
+    user_followers = len(FollowersCount.objects.filter(user=pk))
+    user_following = len(FollowersCount.objects.filter(follower=pk))
 
-#     context = {
-#         'user_object': user_object,
-#         'user_profile': user_profile,
-#         'user_posts': user_posts,
-#         'user_post_length': user_post_length,
-#         'button_text': button_text,
-#         'user_followers': user_followers,
-#         'user_following': user_following,
-#     }
+    context = {
+        'user_object': user_object,
+        'user_profile': user_profile,
+        'user_posts': user_posts,
+        'user_post_length': user_post_length,
+        'button_text': button_text,
+        'user_followers': user_followers,
+        'user_following': user_following,
+    }
     
-#     return render(request, 'users/profile.html', context)
+    return render(request, 'users/profiler.html', context)
+
+@login_required
+@login_required(login_url='signin')
+def follow(request):
+    if request.method == 'POST':
+        follower = request.POST['follower']
+        user = request.POST['user']
+
+        if FollowersCount.objects.filter(follower=follower, user=user).first():
+            delete_follower = FollowersCount.objects.get(follower=follower, user=user)
+            delete_follower.delete()
+            return redirect('/profile/'+user)
+        else:
+            new_follower = FollowersCount.objects.create(follower=follower, user=user)
+            new_follower.save()
+            return redirect('/profile/'+user)
+    else:
+        return redirect('homepage')
 
 @login_required
 def edit_account(request):
