@@ -67,7 +67,6 @@ def profileUsers(request, pk):
     return render(request, 'users/profiler.html', context)
 
 @login_required
-@login_required(login_url='signin')
 def follow(request):
     if request.method == 'POST':
         follower = request.POST['follower']
