@@ -44,6 +44,10 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse("post-details", args=[str(self.id)])
+    @classmethod
+    def search_by_caption(cls,search_term):
+        captions = cls.objects.filter(title__icontains=search_term)
+        return captions
     
    
 class FollowersCount(models.Model):

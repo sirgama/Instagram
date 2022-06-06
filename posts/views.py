@@ -94,4 +94,14 @@ def view_post(request,pk):
         }   
     return render(request,'posts/singlepost.html',context)
         
-    
+def search(request):
+    if 'post' in request.GET and request.GET["post"]:
+        search_term = request.GET.get("post")
+        searched_posts = Post.search_by_caption(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'posts/search.html',{"message":message,"captions": searched_posts})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'all-news/search.html',{"message":message})
