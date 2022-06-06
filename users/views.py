@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from posts.models import Post
 
 # Create your views here.
 
@@ -22,9 +23,14 @@ def register(request):
 
 @login_required
 def profile(request):
+    user = request.user
+    posts = Post.objects.filter(user=user).all()
     
+    context = {
+        'posts': posts
+    }
     
-    return render(request, 'users/profile.html')
+    return render(request, 'users/profile.html', context)
 
 @login_required
 def edit_account(request):

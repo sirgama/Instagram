@@ -8,7 +8,7 @@
     <div class="container col-md-8 ">
     <div class="row">
         <div class="col-md-3">
-            <img class="rounded-circle img-fluid royalty" src="{{user.profile.image.url}}" alt=""
+            <img class="rounded-circle img-fluid royalty" src="{{user.profile.post.url}}" alt=""
                             style="max-height: 160px;max-width:180px;">
         </div>
 
@@ -94,7 +94,47 @@
       role="tabpanel"
       aria-labelledby="ex1-tab-1"
     >
-      Tab 1 content
+      <div class="container">
+        <div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
+            {% for post in posts %}
+    
+            <a href="">
+              <div class=" bg-post rounded-6 masking bg3 m-md-4">
+                <img src="{{post.picture.url}}" class="w-100 h-100 " data-bs-toggle="modal" data-bs-target="#exampleModal{{post.id}}" alt="Alternative text"
+                  style="border-radius: 10px; width:auto;" />
+                <!-- Mask -->
+                <div class=" " style="
+        background: linear-gradient(
+          to bottom,
+          hsla(0, 0%, 0%, 0),
+          hsla(307, 82%, 24%, 0.55)
+        );
+      ">
+                  <div class="
+            bottom-0
+            d-flex
+            align-items-end
+            h-100
+            text-center
+            justify-content-center
+          ">
+                    <div class="col">
+                    
+                      <!--         
+            <div class="row"><p class="fw-bold text-white mb-1 btn3"><small><i class="fa-solid fa-map-location-dot"></i> Location: {{post.location.name}} </small></p></div>
+            <div class="row"><p class="fw-bold text-white mb-1 btn3"><small><i class="fa-solid fa-font-awesome"></i> Category: {{post.category.title}}</small></p></div> -->
+    
+                    </div>
+    
+                  </div>
+                </div>
+              </div>
+            </a>
+    
+            
+            {% endfor %}
+          </div>   
+      </div>
     </div>
     <div
       class="tab-pane fade"
