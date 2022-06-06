@@ -73,6 +73,47 @@
 
 
 
+                {% for post in post_items %}
+                <div class="col">
+                    <div class="card mt-4 ">
+                        <div class="card-header">
+                            <div class="row d.flex justify-content-between">
+                                <div class="col-md-10 col-sm-1">
+                                    <img class="rounded-circle img-fluid royalty" src="{{post.user.profile.image.url}}"
+                                        alt="" style="max-height: 40px;max-width:40px;"> <span class="fw-bold">{{post.user.username}}</span>
+
+                                </div>
+                                <div class="col-md-2 col-sm-1"><i class="fa-solid fa-ellipsis"></i></div>
+                            </div>
+                        </div>
+                        <img src="{{post.picture.url}}" class="card-img-top"
+                            alt="Hollywood Sign on The Hill" height="400" width="400" />
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <div class="row d.flex justify-content-between">
+                                    <div class="col-md-10 col-sm-1">
+                                        <i class="fa-regular fa-heart m-2"></i><i
+                                            class="fa-regular fa-comment m-2"></i><i
+                                            class="fa-solid fa-location-arrow m-2"></i>
+                                    </div>
+                                    <div class="col-md-2 col-sm-1"><i class="fa-regular fa-bookmark"></i></div>
+                                </div>
+                            </h5>
+                            <p class="card-text fw-bold">
+                                <small>{{post.likes}} likes</small>
+                            </p>
+                            <p class="card-text"><span class="fw-bold">{{post.user.username}} </span> {{post.user.caption}}</p>
+                            <small class="text-muted">{{post.posted}}</small>
+                        </div>
+                        <div class="card-footer">
+                            
+
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+
             </div>
 
 
