@@ -2,22 +2,23 @@ from multiprocessing import context
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-from .models import Tag, Post, Follow, Stream, Likes
+from .models import Tag, Post, Follow, Stream, Likes, Comments
+from django.contrib.auth.models import User
 from .forms import NewPostForm
 from django.urls import reverse
+from users.models import Profile
 
 # Create your views here.
 
 @login_required
 def home(request):
-    user = request.user
-    posts = Stream.objects.filter(user=user)
-    group_ids = []
-    for post in posts:
-        group_ids.append(post.post.id)
-    post_items = Post.objects.filter(id__in=group_ids).all().order_by('-posted')
+    
+    post_items = Post.objects.all()
+    all_users = User.objects.all()
     context = {
-        'post_items': post_items
+        'post_items': post_items[::-1],
+        'all_users':all_users
+       
     }
     return render(request, 'posts/home.html', context)
 
@@ -65,3 +66,14 @@ def like(request, post_id):
     
     return HttpResponseRedirect(reverse('homepage'))
         
+def comments(request, post_id):
+    user = request.user
+    if request.method == 'POST':
+        comment = request.POST.get('comment')
+        post = Post.objects.get(id=post_id)
+        user_profile = User.objects.get(username=user.username)
+        Comments.objects.create(comment = comment, post=post, user=user_profile)
+    return HttpResponseRedirect(reverse('homepage'))
+        
+        
+    

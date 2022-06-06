@@ -40,7 +40,7 @@ class Post(models.Model):
     tags = models.ManyToManyField(Tag, related_name="tags")
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     likes = models.IntegerField(default=0)
-    comments = models.CharField(max_length=30, blank=True)
+    # comments = models.CharField(max_length=30, blank=True)
 
     def get_absolute_url(self):
         return reverse("post-details", args=[str(self.id)])
@@ -72,5 +72,28 @@ class Stream(models.Model):
 class Likes(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_likes')
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_likes')
+    
+class Comments(models.Model):
+    comment = models.CharField(max_length=100)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_comments')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_comments')
+    created = models.DateTimeField(auto_now_add=True, null=True)
+    
+    def __str__(self):
+        return f'{self.comment} Post'
+    
+    def save_comment(self):
+        self.save()
+        
+    def delete_comment(self):
+        self.delete()
+    @classmethod
+    def filter_comments_by_post_id(cls, id):
+        comments = Comments.objects.filter(post__id=id)
+        return comments
+        
+
+    class Meta:
+        ordering = ["-pk"]
             
 post_save.connect(Stream.add_post, sender=Post)
