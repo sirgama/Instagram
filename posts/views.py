@@ -76,5 +76,20 @@ def comments(request, post_id):
         Comments.objects.create(comment = comment, post=post, user=user_profile)
     return HttpResponseRedirect(reverse('homepage'))
         
+
+@login_required
+def view_post(request,pk):
+    post = Post.objects.get(id=pk)
+    try:
+        comments = Comments.filter_comments_by_post_id(pk)
+                
+    except:  
+        comments = None
+    
+    context = {
+        'post':post,
+        "comments":comments
+        }   
+    return render(request,'posts/singlepost.html',context)
         
     

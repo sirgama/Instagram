@@ -8,37 +8,41 @@
     <div class="container col-md-8 ">
     <div class="row">
         <div class="col-md-3">
-            <img class="rounded-circle img-fluid royalty" src="#" alt=""
+            <img class="rounded-circle img-fluid royalty" src="{{user_profile.picture.url}}" alt=""
                             style="max-height: 160px;max-width:180px;">
         </div>
 
         <!-- User details section -->
         <div class="col-md-6">
             <div class="row">
-                <div class="col"><h4>Fake username</h4> </div>
-                <div class="col"> <a href="{% url 'edit-account' %}"><button type="button" class="btn btn-outline-light text-dark fw-bold text-dark" data-mdb-ripple-color="dark">Edit Profile</button></a></div>
+                <div class="col"><h4>{{user_profile.user.username}}</h4> </div>
+                
                    <div class="col"> <form action="/follow" method="POST">
                         {% csrf_token %}
 
                         <input type="hidden" value="{{user.username}}" name="follower"/>
-                        <input type="hidden" value="{{user.username}}" name="following"/>
-                        <button type="button" class="btn btn-outline-light text-dark fw-bold text-dark" data-mdb-ripple-color="dark">Follow</button>
+                        <input type="hidden" value="{{user_object.username}}" name="user"/>
+                        {% if user_object.username == user.username %}
+                        <div class="col"> <a href="{% url 'edit-account' %}"><button type="button" class="btn btn-outline-light text-dark fw-bold text-dark" data-mdb-ripple-color="dark">Edit Profile</button></a></div>
+                        {% else %}
+                        <button type="button" class="btn btn-outline-light text-dark fw-bold text-dark" data-mdb-ripple-color="dark">{{button_text}}</button>
+                        {% endif %}
                     </form></div>
                 
                 <div class="col"><i class="fa-solid fa-gear" ></i></div>
             </div>
             <!-- Posts Followers and following -->
             <div class="row mt-md-2">
-                <div class="col"><p><span class="fw-bold text-dark">0</span> posts</p> </div>
-                <div class="col"><p><span class="fw-bold text-dark">0</span> followers</p> </div>
-                <div class="col"><p><span class="fw-bold text-dark">0</span> following</p> </div>
+                <div class="col"><p><span class="fw-bold text-dark">{{user_post_length}}</span> posts</p> </div>
+                <div class="col"><p><span class="fw-bold text-dark">{{user_followers}}</span> followers</p> </div>
+                <div class="col"><p><span class="fw-bold text-dark">{{user_following}}</span> following</p> </div>
             </div>
 
             <!-- bio details -->
             <div class="row mt-2"><h6 class="fw-bold text-dark">Fake user</h6></div>
-            <div class="row"><p class="text-dark">fake bio</p></div>
-            <div class="row"><p class="text-dark">fake location</p></div>
-            <div class="row"><a class="" href="#">Fake url</a></div>
+            <div class="row"><p class="text-dark">{{user_profile.profile.bio}}</p></div>
+            <div class="row"><p class="text-dark">{{user_profile.profile.location}}</p></div>
+            <div class="row"><a class="" href="#">{{user_profile.profile.url}}</a></div>
         </div>
         <!-- User details section -->
 
@@ -103,11 +107,11 @@
     >
       <div class="container">
         <div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
-            
+            {% for post in user_posts %}
     
             <a href="">
               <div class=" bg-post rounded-6 masking bg3 m-md-4">
-                <img src="#" class="w-100 h-100 "  alt="Alternative text"
+                <img src="{{post.image.url}}" class="w-100 h-100 "  alt="Alternative text"
                   style="border-radius: 10px; width:auto;" />
                 <!-- Mask -->
                 <div class=" " style="
@@ -138,7 +142,7 @@
               </div>
             </a>
     
-            
+            {% endfor %}
             
           </div>   
       </div>

@@ -38,21 +38,21 @@ def profile(request):
     return render(request, 'users/profile.html', context)
 
 @login_required
-def profileUsers(request, pk):
-    user_object = User.objects.get(username=pk)
+def profileUsers(request, username):
+    user_object = User.objects.get(username=username)
     user_profile = Profile.objects.get(user=user_object)
-    user_posts = Post.objects.filter(user=pk).all()
+    user_posts = Post.objects.filter(user=username).all()
     user_post_length = len(user_posts)
     follower = request.user.username
-    user = pk
+    user = username
 
     if FollowersCount.objects.filter(follower=follower, following=user).first():
         button_text = 'Unfollow'
     else:
         button_text = 'Follow'
 
-    user_followers = len(FollowersCount.objects.filter(user=pk))
-    user_following = len(FollowersCount.objects.filter(follower=pk))
+    user_followers = len(FollowersCount.objects.filter(user=username))
+    user_following = len(FollowersCount.objects.filter(follower=username))
 
     context = {
         'user_object': user_object,
