@@ -50,6 +50,9 @@ class Follow(models.Model):
     follower = models.ForeignKey(User, on_delete=models.CASCADE, related_name='follower')
     following = models.ForeignKey(User, on_delete=models.CASCADE, related_name='following')
     
+    def __str__(self):
+        return self.following
+    
     
 class Stream(models.Model):
     following = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='stream_following')

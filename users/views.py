@@ -3,6 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from posts.models import Post
+from django.contrib.auth.models import User
+from .models import Profile
+from posts.models import Follow
 
 # Create your views here.
 
@@ -34,6 +37,34 @@ def profile(request):
     
     return render(request, 'users/profile.html', context)
 
+def profileUsers(request, pk):
+    user_object = User.objects.get(username=pk)
+    user_profile = Profile.objects.get(user=user_object)
+    user_posts = Post.objects.filter(user=pk).all()
+    user_post_length = len(user_posts)
+    follower = request.user.username
+    user = pk
+
+    if Follow.objects.filter(follower=follower, following=user).first():
+        button_text = 'Unfollow'
+    else:
+        button_text = 'Follow'
+
+    user_followers = len(Follow.objects.filter(user=pk))
+    user_following = len(Follow.objects.filter(follower=pk))
+
+    context = {
+        'user_object': user_object,
+        'user_profile': user_profile,
+        'user_posts': user_posts,
+        'user_post_length': user_post_length,
+        'button_text': button_text,
+        'user_followers': user_followers,
+        'user_following': user_following,
+    }
+    
+    return render(request, 'users/profile.html', context)
+
 @login_required
 def edit_account(request):
     if request.method == 'POST':
@@ -56,3 +87,7 @@ def edit_account(request):
     }
     
     return render(request, 'users/edit_account.html', context)
+
+def follow(request):
+    
+    pass
