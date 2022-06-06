@@ -40,6 +40,7 @@ class Post(models.Model):
     tags = models.ManyToManyField(Tag, related_name="tags")
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     likes = models.IntegerField(default=0)
+    comments = models.CharField(max_length=30, blank=True)
 
     def get_absolute_url(self):
         return reverse("post-details", args=[str(self.id)])
