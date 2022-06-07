@@ -112,7 +112,11 @@ def follow(request):
 
 def UserDetail(request, user_id):
     user = get_object_or_404(User, id=user_id)
+    posts = Post.objects.filter(user=user_id).all()
+    counted = posts.count()
     context = {
-        'user':user
+        'user':user,
+        'posts':posts,
+        'counted':counted
     }
     return render(request, 'users/user-detail.html', context)
