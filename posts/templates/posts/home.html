@@ -46,7 +46,7 @@
                 <div class="col m-2">
                     <a href="{% url 'user-detail' user.id %}"><img class="rounded-circle img-fluid royaltyy" src="{{user.profile.image.url}}" alt=""
                         style="max-height: 50px;max-width:50px;">
-                    <small><p class="text-center text-muted ">@{{user.username}}</p></small>
+                    <small><p class=" text-muted ">{{user.username}}</p></small>
                 </div></a>
 
                 {% endfor %}
@@ -123,7 +123,7 @@
             <div class="row m-5">
                 <div class="col"> 
                     <div class=" px-3"><img class="rounded-circle img-fluid royalty" src="{{user.profile.image.url}}" alt=""
-                        style="max-height: 45px;max-width:45px;"> <small class="m-3">{{user.username}}</small><br><small class="text-muted m-3">{{user.profile.first_name}} {{user.profile.last_name}}</small> </div>
+                        style="max-height: 45px;max-width:45px;"> <small class="m-3">{{user.username}}</small><br><small class="text-muted text-center m-5">{{user.profile.first_name}} {{user.profile.last_name}}</small> </div>
                     <h6 class="mt-2 mb-1 m-2 text-muted">Suggestions for you</h6>
 
                     <div class="" style="width: 30rem;">
