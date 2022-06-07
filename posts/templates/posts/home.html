@@ -127,7 +127,7 @@
 
                     <div class="" style="width: 30rem;">
                         <ul class=" ">
-                            {% for user in all_users %}
+                            {% for user in all_users|slice:":5"  %}
                           <div class=" m-2"><img class="rounded-circle img-fluid royalty" src="{{user.profile.image.url}}" alt=""
                             style="max-height: 30px;max-width:30px;"> <small>{{user.username}}</small><br><small class="text-muted">New to instagram</small> </div>
                       

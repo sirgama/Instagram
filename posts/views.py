@@ -15,10 +15,11 @@ def home(request):
     user = request.user
     post_items = Post.objects.all()
     all_users = User.objects.all()
+    
     comments = Comments.objects.all()
     context = {
         'post_items': post_items[::-1],
-        'all_users':all_users,
+        'all_users':all_users[::-1],
         'user':user,
         'comments':comments
        
