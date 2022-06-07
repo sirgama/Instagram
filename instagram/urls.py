@@ -30,6 +30,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('follow', user_views.follow, name='follow'),
     path('profile/<str:username>/', user_views.profileUsers, name='profileuser'),
+    path('<int:user_id>/', user_views.UserDetail, name='user-detail'),
     
 ]
 if settings.DEBUG:

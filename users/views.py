@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
@@ -109,3 +109,10 @@ def edit_account(request):
 def follow(request):
     
     pass
+
+def UserDetail(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    context = {
+        'user':user
+    }
+    return render(request, 'users/user-detail.html', context)

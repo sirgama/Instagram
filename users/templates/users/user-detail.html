@@ -1,0 +1,173 @@
+{% extends 'users/base.html' %}
+{% load static %}
+<div class="container-fluid">
+{% block content %}
+{% include 'users/navbar.html' %}
+<div class="container-fluid row mt-5">
+    <div class="col-md-2"></div>
+    <div class="container col-md-8 ">
+    <div class="row">
+        <div class="col-md-3">
+            <img class="rounded-circle img-fluid royalty" src="{{user.profile.image.url}}" alt=""
+                            style="max-height: 160px;max-width:180px;">
+        </div>
+
+        <!-- User details section -->
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col"><h4>{{user.username}}</h4> </div>
+                <div class="col"> <a href="{% url 'edit-account' %}"><button type="button" class="btn btn-outline-light text-dark fw-bold text-dark" data-mdb-ripple-color="dark">Edit Profile</button></a></div>
+                   <!-- <div class="col"> <form action="/follow" method="POST">
+                        {% csrf_token %}
+
+                        <input type="hidden" value="{{user.username}}" name="follower"/>
+                        <input type="hidden" value="{{user.username}}" name="following"/>
+                        <button type="button" class="btn btn-outline-light text-dark fw-bold text-dark" data-mdb-ripple-color="dark">Follow</button>
+                    </form></div> -->
+                
+                <div class="col"><i class="fa-solid fa-gear" ></i></div>
+            </div>
+            <!-- Posts Followers and following -->
+            <div class="row mt-md-2">
+                <div class="col"><p><span class="fw-bold text-dark">{{counted}}</span> posts</p> </div>
+                <div class="col"><p><span class="fw-bold text-dark">0</span> followers</p> </div>
+                <div class="col"><p><span class="fw-bold text-dark">0</span> following</p> </div>
+            </div>
+
+            <!-- bio details -->
+            <div class="row mt-2"><h6 class="fw-bold text-dark">{{user.profile.first_name}} {{user.profile.last_name}}</h6></div>
+            <div class="row"><p class="text-dark">{{user.profile.bio}}</p></div>
+            <div class="row"><p class="text-dark">{{user.profile.location}}</p></div>
+            <div class="row"><a class="" href="{{user.profile.url}}">{{user.profile.url}}</a></div>
+        </div>
+        <!-- User details section -->
+
+
+    </div>
+   <hr> </div>
+   <div class="col-md-2"></div>
+</div>
+
+
+<div class="container">
+    <div class="container d.flex  justify-content-center">
+        <!-- Pills navs -->
+<ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a
+        class=" active text-muted fw-bold text-dark mt-3"
+       
+        id="ex1-tab-1"
+        data-mdb-toggle="pill"
+        href="#ex1-pills-1"
+        role="tab"
+        aria-controls="ex1-pills-1"
+        aria-selected="true"
+        ><i class="fa-solid fa-signs-post"></i> Posts</a
+      >
+    </li>
+    <li class="nav-item" role="presentation">
+      <a
+      class="  text-muted fw-bold text-dark mt-3"
+        id="ex1-tab-2"
+        data-mdb-toggle="pill"
+        href="#ex1-pills-2"
+        role="tab"
+        aria-controls="ex1-pills-2"
+        aria-selected="false"
+        ><i class="fa-regular fa-bookmark"></i> Saved</a
+      >
+    </li>
+    <li class="nav-item" role="presentation">
+      <a
+        class="  text-muted fw-bold text-dark mt-3"
+        id="ex1-tab-3"
+        data-mdb-toggle="pill"
+        href="#ex1-pills-3"
+        role="tab"
+        aria-controls="ex1-pills-3"
+        aria-selected="false"
+        ><i class="fa-regular fa-address-card"></i> Tagged</a
+      >
+    </li>
+  </ul>
+  <!-- Pills navs -->
+  
+  <!-- Pills content -->
+  <div class="tab-content" id="ex2-content">
+    <div
+      class="tab-pane fade show active"
+      id="ex1-pills-1"
+      role="tabpanel"
+      aria-labelledby="ex1-tab-1"
+    >
+      <div class="container">
+        <div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
+            {% for post in posts %}
+    
+            <a href="">
+              <div class=" bg-post rounded-6 masking bg3 m-md-4">
+                <img src="{{post.picture.url}}" class="w-100 h-100 " data-bs-toggle="modal" data-bs-target="#exampleModal{{post.id}}" alt="Alternative text"
+                  style="border-radius: 10px; width:auto;" />
+                <!-- Mask -->
+                <div class=" " style="
+        background: linear-gradient(
+          to bottom,
+          hsla(0, 0%, 0%, 0),
+          hsla(307, 82%, 24%, 0.55)
+        );
+      ">
+                  <div class="
+            bottom-0
+            d-flex
+            align-items-end
+            h-100
+            text-center
+            justify-content-center
+          ">
+                    <div class="col">
+                    
+                      <!--         
+            <div class="row"><p class="fw-bold text-white mb-1 btn3"><small><i class="fa-solid fa-map-location-dot"></i> Location: {{post.location.name}} </small></p></div>
+            <div class="row"><p class="fw-bold text-white mb-1 btn3"><small><i class="fa-solid fa-font-awesome"></i> Category: {{post.category.title}}</small></p></div> -->
+    
+                    </div>
+    
+                  </div>
+                </div>
+              </div>
+            </a>
+    
+            
+            {% endfor %}
+          </div>   
+      </div>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="ex1-pills-2"
+      role="tabpanel"
+      aria-labelledby="ex1-tab-2"
+    >
+     <div class="container">
+         <h5 class="text-center">Your saved posts will show here</h5>
+     </div>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="ex1-pills-3"
+      role="tabpanel"
+      aria-labelledby="ex1-tab-3"
+    >
+      <div class="container">
+          <h5 class="text-center">When you get tagged, they will show here</h5>
+      </div>
+    </div>
+  </div>
+  <!-- Pills content -->
+    </div>
+</div>
+
+
+{% endblock %}
+</div>

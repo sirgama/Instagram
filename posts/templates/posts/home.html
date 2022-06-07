@@ -44,10 +44,10 @@
             <div class="scrolling-wrapper card">
                 {% for user in all_users %}
                 <div class="col m-2">
-                    <img class="rounded-circle img-fluid royaltyy" src="{{user.profile.image.url}}" alt=""
+                    <a href="{% url 'user-detail' user.id %}"><img class="rounded-circle img-fluid royaltyy" src="{{user.profile.image.url}}" alt=""
                         style="max-height: 50px;max-width:50px;">
                     <small><p class="text-center text-muted ">@{{user.username}}</p></small>
-                </div>
+                </div></a>
 
                 {% endfor %}
             </div>
@@ -63,15 +63,15 @@
                             <div class="row d.flex justify-content-between">
                                 <div class="col-md-10 col-sm-1">
                                     
-                                   <img class="rounded-circle img-fluid royalty" src="{{post.user.profile.image.url}}"
+                                    <a href="{% url 'user-detail' post.user.id %}"><img class="rounded-circle img-fluid royalty" src="{{post.user.profile.image.url}}"
                                         alt="" style="max-height: 40px;max-width:40px;"> <span class="fw-bold">{{post.user.username}}</span>
 
-                                </div>
+                                </div></a>
                                 <div class="col-md-2 col-sm-1"><i class="fa-solid fa-ellipsis"></i></div>
                             </div>
                         </div>
-                       <img src="{{post.picture.url}}" class="card-img-top"
-                            alt="Hollywood Sign on The Hill" height="400" width="400" style="object-fit: cover;" />
+                       <a href="{% url 'post-detail' post.id %}"><img src="{{post.picture.url}}" class="card-img-top"
+                            alt="Hollywood Sign on The Hill" height="400" width="400" style="object-fit: cover;" /></a>
                         <div class="card-body">
                             <h5 class="card-title">
                                 <div class="row d.flex justify-content-between">
@@ -128,8 +128,8 @@
                     <div class="" style="width: 30rem;">
                         <ul class=" ">
                             {% for user in all_users|slice:":5"  %}
-                          <div class=" m-2"><img class="rounded-circle img-fluid royalty" src="{{user.profile.image.url}}" alt=""
-                            style="max-height: 30px;max-width:30px;"> <small>{{user.username}}</small><br><small class="text-muted">New to instagram</small> </div>
+                            <a href="{% url 'user-detail' user.id %}"><div class=" m-2"><img class="rounded-circle img-fluid royalty" src="{{user.profile.image.url}}" alt=""
+                            style="max-height: 30px;max-width:30px;"> <small>{{user.username}}</small><br><small class="text-muted">New to instagram</small> </div></a>
                       
 
                           {% endfor %}
