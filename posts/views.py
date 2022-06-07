@@ -1,6 +1,6 @@
 from multiprocessing import context
 from django.http import HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from .models import Tag, Post, FollowersCount,  Likes, Comments
 from django.contrib.auth.models import User
@@ -106,3 +106,12 @@ def search(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'posts/search.html',{"message":message})
+    
+
+def PostDetail(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    context = {
+        'post':post
+    }
+    return render(request, 'posts/post-detail.html', context)
+    

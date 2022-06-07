@@ -8,4 +8,5 @@ urlpatterns = [
     path('<uuid:post_id>/like', views.like, name='like'),
     path('comment/<post_id>/',views.comments, name='comment'),
     path('post/<int:pk>/',views.view_post, name='singlepost'),
+    path('<uuid:post_id>/', views.PostDetail, name='post-detail'),
 ]
