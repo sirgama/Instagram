@@ -1,7 +1,8 @@
 # Instagram
 
-<!-- <img src="./main/static/images/Screenshot_select-area_20220529192819.png">
-<img src="./main/static/images/Screenshot_select-area_20220529192839.png"> -->
+<img src="./media/read1.png">
+<img src="./media/read2.png">
+<img src="./media/read3.png">
 
 ## Project Description
 
@@ -74,7 +75,7 @@ Create .env file and paste paste the following filling where appropriate:
 
 The application is deployed on Heroku and is live on this link:
 
-[https://instagram-s.herokuapp.com/](https://instagram-s.herokuapp.com/)
+[https://instagram-ms.herokuapp.com/](https://instagram-ms.herokuapp.com/)
 
 ## Built With
 
