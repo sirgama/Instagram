@@ -27,12 +27,14 @@ def register(request):
 @login_required
 def profile(request):
     user = request.user
+    current_user = request.user
     posts = Post.objects.filter(user=user).all()
     posts.reverse()
     counted = posts.count()
     context = {
         'posts': posts,
-        'counted':counted
+        'counted':counted,
+        'current_user':current_user
     }
     
     return render(request, 'users/profile.html', context)
@@ -66,22 +68,7 @@ def profileUsers(request, username):
     
     return render(request, 'users/profiler.html', context)
 
-@login_required
-def follow(request):
-    if request.method == 'POST':
-        follower = request.POST['follower']
-        user = request.POST['user']
 
-        if FollowersCount.objects.filter(follower=follower, user=user).first():
-            delete_follower = FollowersCount.objects.get(follower=follower, user=user)
-            delete_follower.delete()
-            return redirect('/profile/'+user)
-        else:
-            new_follower = FollowersCount.objects.create(follower=follower, user=user)
-            new_follower.save()
-            return redirect('/profile/'+user)
-    else:
-        return redirect('homepage')
 
 @login_required
 def edit_account(request):
@@ -108,15 +95,49 @@ def edit_account(request):
 
 def follow(request):
     
-    pass
+    if request.method == 'POST':
+        follower = request.POST['follower']
+        user = request.POST['user']
+        
+        if FollowersCount.objects.filter(follower=follower, user=user).first():
+            delete_follower = FollowersCount.objects.get(follower=follower, user=user)
+            delete_follower.delete()
+            return redirect('/')
+        
+        else:
+            new_follower = FollowersCount.objects.create(follower=follower, user=user)
+            new_follower.save()
+            return redirect('/')
+    else:
+        return redirect('homepage')
+        
+    
 
 def UserDetail(request, user_id):
+    
     user = get_object_or_404(User, id=user_id)
     posts = Post.objects.filter(user=user_id).all()
     counted = posts.count()
+    follower = request.user.username
+    
+    if FollowersCount.objects.filter(follower=follower, user=user).first():
+        button_text = 'Unfollow'
+    else:
+        button_text = 'Follow'
+        
+    followers = FollowersCount.objects.filter(user=user_id).all()
+    thefollowers = len(followers)
+    following = FollowersCount.objects.filter(follower=user_id).all()
+    thefollowing = len(following)
+    
     context = {
         'user':user,
         'posts':posts,
-        'counted':counted
+        'counted':counted,
+        'follower':follower,
+        'followers':thefollowers,
+        'following':thefollowing,
+        
+        'button_text':button_text
     }
     return render(request, 'users/user-detail.html', context)

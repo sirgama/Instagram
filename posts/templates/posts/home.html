@@ -76,8 +76,9 @@
                             <h5 class="card-title">
                                 <div class="row d.flex justify-content-between">
                                     <div class="col-md-10 col-sm-1">
-                                        <a href="{% url 'like' post.id %}"><i class="fa-regular fa-heart m-2"></i></a> <i
-                                            class="fa-regular fa-comment m-2"></i><i
+                                        <a href="{% url 'like' post.id %}"><i class="fa-regular fa-heart m-2"></i></a> 
+                                        <a href="{% url 'post-detail' post.id %}"><i
+                                            class="fa-regular fa-comment m-2"></i></a><i
                                             class="fa-solid fa-location-arrow m-2"></i>
                                     </div>
                                     <div class="col-md-2 col-sm-1"><i class="fa-regular fa-bookmark"></i></div>

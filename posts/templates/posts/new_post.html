@@ -3,6 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+{% include 'posts/navbar.html' %}
 <div class="container mt-5">
     <div class="container mt-5">
                             
@@ -10,10 +11,10 @@
 
                     <div class="row">
                         <div class="col-md-6  m-2  " >
-                            <div class="col form-area card">
-                                <div class="container">
-                                    <img class="img-fluid mainlogo m-4 " src="{% static 'assets/download.png' %}" alt="">
-                                <p class=" text-muted fw-bold"> Create anew post from your memories<br> share with your friends.</p>
+                            <div class="col form-area card mt-5">
+                                <div class="container mt-5">
+                                    
+                                <p class=" text-muted text-center fw-bold"> Create anew post from your memories<br> share with your friends.</p>
                                 
                                 <form class="container" action="" method="POST" enctype="multipart/form-data">
                                     

@@ -16,22 +16,22 @@
         <div class="col-md-6">
             <div class="row">
                 <div class="col"><h4>{{user.username}}</h4> </div>
-                <div class="col"> <a href="#"><button type="button" class="btn btn-outline-light text-dark fw-bold text-dark" data-mdb-ripple-color="dark">Follow</button></a></div>
-                   <!-- <div class="col"> <form action="/follow" method="POST">
+                <!-- <div class="col"> <a href="#"><button type="button" class="btn btn-outline-light text-dark fw-bold text-dark" data-mdb-ripple-color="dark">Follow</button></a></div> -->
+                   <div class="col"> <form action="{% url 'follow' %}" method="POST">
                         {% csrf_token %}
 
-                        <input type="hidden" value="{{user.username}}" name="follower"/>
-                        <input type="hidden" value="{{user.username}}" name="following"/>
-                        <button type="button" class="btn btn-outline-light text-dark fw-bold text-dark" data-mdb-ripple-color="dark">Follow</button>
-                    </form></div> -->
+                        <input type="hidden" value="{{user.username}}" name="user"/>
+                        <input type="hidden" value="{{follower}}" name="follower"/>
+                        <button type="submit" class="btn btn-outline-success text-dark fw-bold text-dark" data-mdb-ripple-color="dark">{{button_text}}</button>
+                    </form></div>
                 
                 <div class="col"><i class="fa-solid fa-gear" ></i></div>
             </div>
             <!-- Posts Followers and following -->
             <div class="row mt-md-2">
                 <div class="col"><p><span class="fw-bold text-dark">{{counted}}</span> posts</p> </div>
-                <div class="col"><p><span class="fw-bold text-dark">0</span> followers</p> </div>
-                <div class="col"><p><span class="fw-bold text-dark">0</span> following</p> </div>
+                <div class="col"><p><span class="fw-bold text-dark">{{followers}}</span> followers</p> </div>
+                <div class="col"><p><span class="fw-bold text-dark">{{following}}</span> following</p> </div>
             </div>
 
             <!-- bio details -->
@@ -105,9 +105,9 @@
         <div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
             {% for post in posts %}
     
-            <a href="">
+            <a href="{% url 'post-detail' post.id %}">
               <div class=" bg-post rounded-6 masking bg3 m-md-4">
-                <img src="{{post.picture.url}}" class="w-100 h-100 " data-bs-toggle="modal" data-bs-target="#exampleModal{{post.id}}" alt="Alternative text"
+               <img src="{{post.picture.url}}" class="w-100 h-100 " data-bs-toggle="modal" data-bs-target="#exampleModal{{post.id}}" alt="Alternative text"
                   style="border-radius: 10px; width:auto;" />
                 <!-- Mask -->
                 <div class=" " style="
@@ -150,7 +150,7 @@
       aria-labelledby="ex1-tab-2"
     >
      <div class="container">
-         <h5 class="text-center">Your saved posts will show here</h5>
+         <h5 class="text-center">When {{user.username}} saves a post, they will show up here</h5>
      </div>
     </div>
     <div
@@ -160,7 +160,7 @@
       aria-labelledby="ex1-tab-3"
     >
       <div class="container">
-          <h5 class="text-center">When you get tagged, they will show here</h5>
+          <h5 class="text-center">{{user.username}}'s Tags are not publicly available</h5>
       </div>
     </div>
   </div>
